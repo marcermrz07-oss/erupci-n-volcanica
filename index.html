@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Video Pantalla Completa</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+      background: black;
+    }
+
+    #video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(1);
+      transform-origin: center center;
+      width: 100vw;  /* ancho completo */
+      height: 100vh; /* alto completo */
+      object-fit: cover; /* llena la pantalla */
+      transition: transform 0.4s ease;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      background: rgba(251, 120, 32, 0.7);
+    }
+  </style>
+</head>
+<body>
+  <video id="video" src="videos, imagenes/Hailuo_Video_necesito que me generes un vid_416866188268376067.mp4" autoplay loop controls></video>
+
+  <div class="controls">
+    <button type="button" onclick="zoomIn()">Acercar</button>
+    <button type="button" onclick="zoomOut()">Alejar</button>
+    <button type="button" onclick="resetZoom()">Restablecer</button>
+  </div>
+
+  <script>
+    let scale = 1;
+    const video = document.getElementById("video");
+
+    function zoomIn() {
+      scale += 0.2;
+      video.style.transform = `translate(-50%, -50%) scale(${scale})`;
+    }
+
+    function zoomOut() {
+      if (scale > 0.4) {
+        scale -= 0.2;
+        video.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      }
+    }
+
+    function resetZoom() {
+      scale = 1;
+      video.style.transform = `translate(-50%, -50%) scale(1)`;
+    }
+  </script>
+</body>
+</html>
